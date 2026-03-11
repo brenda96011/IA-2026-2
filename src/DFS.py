@@ -16,6 +16,8 @@ and preprocessing of the input data.
 UNAM IA Library: A professional toolkit for AI developed at UNAM.
 =============================================================================
 '''
+import time
+import tracemalloc
 
 def dfs(grafo, nodo, visitados=None):
     if visitados is None:
@@ -31,4 +33,16 @@ def dfs(grafo, nodo, visitados=None):
 
 grafo = {0:[1,2,3], 1:[0,4,5], 2:[0,6], 3:[0,7], 4:[1], 5:[1], 6:[2], 7:[3]}
 print("DFS empezando desde el nodo 0:")
+
+tracemalloc.start()
+start = time.time()
+
 dfs(grafo, 0)
+
+end = time.time()
+_, pico = tracemalloc.get_traced_memory()
+tracemalloc.stop()
+
+tiempo_total = end - start
+print(f"\nTiempo de ejecución: {tiempo_total:.10f} segundos")
+print(f"Máximo de memoria usada: {pico} bytes")
