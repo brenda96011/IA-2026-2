@@ -21,9 +21,9 @@ import tracemalloc
 
 def dfs(grafo, nodo, visitados=None):
     if visitados is None:
-        visitados = []
+        visitados = set()
 
-    visitados.append(nodo)
+    visitados.add(nodo)
     print(nodo, end=" ")
 
     for v in grafo[nodo]:
