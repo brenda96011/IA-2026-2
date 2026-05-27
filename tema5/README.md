@@ -54,6 +54,21 @@ recursión simple) era extremadamente costoso (exponencial).
 dinámica).
 
 ## Word2Vec
+##### Algoritmo en palabras
+Imagina que estamos en un entrenamiento de fútbol. Queremos saber qué tan "cercanos" son los jugadores
+por cómo se pasan el balón.
+1. Deslizar la ventana: Caminamos por una oración (el corpus). En cada paso, elegimos una palabra central (el
+jugador con el balón) y miramos a sus palabras de contexto (los compañeros a los que puede pasarles el balón
+dentro de un radio de, por ejemplo, 2 metros).
+2. El reto de la predicción: El algoritmo intenta predecir, dada la palabra central, cuáles son las palabras que
+probablemente aparecerán a su alrededor.
+3. Ajuste de posiciones:
+  - Si el modelo acierta (ej. "Messi" suele estar cerca de "Gol"), refuerza esa conexión acercando sus
+vectores en el espacio.
+  - Si el modelo falla, aplica un castigo y aleja los vectores.
+4. El resultado: Al final de miles de iteraciones, las palabras que "juegan en la misma zona" terminan con
+coordenadas (vectores) muy similares.
+
 ##### Algoritmo formal (Skip-gram con Softmax)
 No es una red neuronal profunda sino una red de una sola capa oculta (projection layer) que busca maximizar la probabilidad del contexto.
 1. Función de objetivo (log-verosimilitud). Dada una secuencia de palabras de entrenamiento w1, w2, ..., wT, el objetivo es maximizar el promedio de la log-probabilidad.
